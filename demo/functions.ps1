@@ -67,3 +67,18 @@ function get-Mandatory {
     write-host $MyParam 
 
 }
+
+function test-MyAlias {
+
+
+
+    [CmdletBinding()]
+    Param(
+        [parameter(Mandatory=$true)]
+        [alias("Param","TheParam")]
+        [String]
+        $MyParam
+    )
+
+    write-host $MyParam 
+}
