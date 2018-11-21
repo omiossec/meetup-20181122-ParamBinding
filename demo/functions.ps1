@@ -82,3 +82,43 @@ function test-MyAlias {
 
     write-host $MyParam 
 }
+
+
+
+function test-ParamPipeline {
+    [CmdletBinding()]
+    param (
+    [Parameter(ValueFrompipeline = $true)]
+        [string[]]
+        $MyParam
+    )
+
+    foreach ($Item in $MyParam) {
+        Write-Host "Item in MyParam $($Item)"
+    }
+
+}
+
+function Get-Something {
+    [CmdletBinding()]
+    Param (
+    [Parameter(ParameterSetName = 'ByLogin')]
+    [string]$Username,
+    [Parameter(ParameterSetName = 'ByLogin')]
+    [PSCredential]$Pass,
+    [Parameter(ParameterSetName = 'ByToken')]
+    [PSSession]$Token
+    )
+    # ...
+}
+
+
+$Splatte  = @{
+    Path = 'C:\Temp'
+    Filter = '*.ps1'
+    }
+    Get-ChildItem @ParamSplat
+
+
+
+
